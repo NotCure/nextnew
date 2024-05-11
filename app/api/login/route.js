@@ -1,4 +1,3 @@
-// app/api/login.js
 import mysql from 'mysql2/promise';
 
 async function query({ query, values = [] }) {
