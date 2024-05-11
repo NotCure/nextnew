@@ -1,12 +1,12 @@
 import { query } from "@/app/_db/db";
 
-export async function handler(req, res) {
-  console.log("Request method:", req.method); // This will log the method used
+export default async function handler(req, res) {
+  console.log("Request method:", req.method); // Good for debugging
   if (req.method === "GET") {
     try {
       const products = await query({
         query: "SELECT * FROM ebrahim_DBlegiogloria",
-        values: [],
+        values: []
       });
       res.status(200).json(products);
     } catch (error) {
