@@ -1,17 +1,18 @@
 import { query } from "@/app/_db/db";
 
 export async function handler(req, res) {
-  if (req.method === "GET") { // Corrected 'methode' to 'method'
+  console.log("Request method:", req.method); // This will log the method used
+  if (req.method === "GET") {
     try {
       const products = await query({
-        query: "SELECT * FROM ebrahim_DBlegiogloria", // Corrected SQL query syntax
+        query: "SELECT * FROM ebrahim_DBlegiogloria",
         values: [],
       });
-      res.status(200).json(products); // Changed the response to send the fetched products
+      res.status(200).json(products);
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Handling potential errors from the query
+      res.status(500).json({ error: error.message });
     }
   } else {
-    res.status(405).json({ error: "Method Not Allowed" }); // Handling cases where the method is not GET
+    res.status(405).json({ error: "Method Not Allowed" });
   }
 }
