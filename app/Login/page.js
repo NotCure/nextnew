@@ -1,10 +1,48 @@
-import React from "react";
+"use client"
+
+import React, { useState } from "react";
 import Navbar from "@/app/_components/navbar/navbar";
 import Header from "@/app/_components/header/Header";
 import Title from "@/app/_components/title/Title";
-import Link from "next/link"; // Import Link from next/link
+import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../_context/AuthContext';
 
 export default function Login() {
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: ''
+  });
+  const [error, setError] = useState("");  // Added error state
+  const { login } = useAuth();  // Get login function from context
+  const router = useRouter();
+
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setError(""); // Clear error when user modifies input
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await fetch('../api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(credentials)
+        });
+        const result = await response.json();
+        if (result.success) {
+            login(result.user);  // Set user in context
+            router.push('/');  // Redirect to homepage
+        } else {
+            setError(result.error || 'Failed to login');
+        }
+    } catch (error) {
+        setError('Failed to send data: ' + error.message);
+    }
+};
+
   return (
     <>
       <Header />
@@ -13,55 +51,47 @@ export default function Login() {
 
       <main className="w-full h-screen flex flex-col items-center mt-16 px-4">
         <div className="max-w-sm w-full text-white">
-          <div className="text-center">
-            <div className="mt-2 space-y-2">
-              <h3 className="text-white text-2xl font-bold sm:text-3xl">
-                Log in to your account
-              </h3>
-              <p className="opacity-50">
-                Don't have an account?{" "}
-                <Link href="/SignUp">
-                  {" "}
-                  {/* Update the href to point to your signup page route */}
-                  <a className="font-medium text-white opacity-70 transition-all hover:opacity-100">
-                    Sign up
-                  </a>
-                </Link>
-              </p>
-            </div>
-          </div>
-          <form className="mt-8 space-y-5">
+          <h1 className={`flex justify-center text-red-500 ${error ? "visible" : "invisible"}`}>
+            {error || "Placeholder to maintain layout"}
+          </h1>
+
+          <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
             <div>
               <label className="font-medium">Email</label>
               <input
                 type="email"
+                name="email"
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                value={credentials.email}
+                onChange={handleChange}
               />
             </div>
             <div>
               <label className="font-medium">Password</label>
               <input
                 type="password"
+                name="password"
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                value={credentials.password}
+                onChange={handleChange}
               />
             </div>
-            <button className="w-full px-4 py-2 text-white font-medium border border-white rounded-2xl duration-150">
+            <button type="submit" className="w-full px-4 py-2 text-white font-medium border border-white rounded-2xl duration-150">
               Sign in
             </button>
-            <div className="text-center">
-              <Link href="/forgot-password">
-                {" "}
-                {/* Suppose you also use Link for forgot password */}
-                <a className="hover:opacity-50 transition-all">
-                  Forgot password?
-                </a>
-              </Link>
-            </div>
           </form>
+          <div className="text-center pt-4">
+            <Link href="/forgot-password" legacyBehavior>
+              <a className="hover:opacity-50 transition-all">
+                Forgot password?
+              </a>
+            </Link>
+          </div>
         </div>
       </main>
     </>
   );
 }
+

@@ -11,12 +11,12 @@ import { arrowDown } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   return (
+
     <div className="overflow-x-hidden overflow-y-hidden">
       <div className={styles.background}>
         <div className={styles.gradientBack}>
           <Header />
           <Navbar />
-          {/* Hero section with large centered text */}
           <Hero />
         </div>
       </div>

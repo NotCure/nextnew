@@ -1,8 +1,12 @@
+"use client";
 import React from "react";
 import Link from "next/link"; // Import the Link component from next/link
 import ActionButtons from "../../navbar/ActionButtons";
+import { useAuth } from "../../../_context/AuthContext";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  let { user, logout } = useAuth();
+
   return (
     <div
       className={`fixed top-0 left-0 bottom-0 h-full z-10 transform ${
@@ -41,6 +45,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <h1>FAQ</h1>
         </Link>
         <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 dark:bg-white w-80" />
+        {user ? (
+          <Link href="/FAQ">
+            <h1>My Profile</h1>
+          </Link>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className="flex justify-center pt-10">
         <ActionButtons />

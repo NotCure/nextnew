@@ -2,6 +2,9 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import { AuthProvider } from './_context/AuthContext';  // Adjust path as necessary
+
+
 config.autoAddCss = false;
 
 const poppins_font = Poppins({
@@ -17,12 +20,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+<AuthProvider>
     <html lang="en">
+
       <body
         className={`${poppins_font.variable} poppin bg-black transition-all	`}
       >
         {children}
       </body>
     </html>
+    </AuthProvider>
   );
 }
