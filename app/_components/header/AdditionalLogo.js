@@ -1,0 +1,18 @@
+import React from "react";
+import Image from "next/image";
+
+const AdditionalLogo = () => {
+  return (
+    <div className="h-6 w-auto relative z-10">
+      <Image
+        src="/assests/searchW.svg"
+        alt="Additional Logo"
+        width={34}
+        height={34}
+        layout="fixed"
+      />
+    </div>
+  );
+};
+
+export default AdditionalLogo;
