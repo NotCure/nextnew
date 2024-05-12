@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import TrafficCard from "./ServicesCards.js";
+import Link from "next/link";
 
 const HeroAfter = () => {
   const cardData = [
@@ -34,12 +35,16 @@ const HeroAfter = () => {
             We are a professional police force committed to
             <br /> safety, community, and modern policing with integrity.
           </h1>
-          <button
-            type="button"
-            className="mt-7 select-none rounded-lg border border-white py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          >
-            <div className="opacity-50 hover:opacity-100">About Us</div>
-          </button>
+          <Link href="/AboutUs" passHref>
+            {" "}
+            {/* Link component to navigate */}
+            <button
+              type="button"
+              className="mt-7 select-none rounded-lg border border-white py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            >
+              <div className="opacity-50 hover:opacity-100">About Us</div>
+            </button>
+          </Link>
         </div>
         <div className="max-w-lg mx-auto mt-24">
           <Image

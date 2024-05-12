@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Navbar from "@/app/_components/navbar/navbar";
 import Header from "@/app/_components/header/Header";
@@ -7,13 +7,13 @@ import Link from "next/link";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
-    naam: '',
-    voornaam: '',
-    gsmnummer: '',
-    adres: '',
-    geslacht: '',
-    email: '',
-    password: ''
+    naam: "",
+    voornaam: "",
+    gsmnummer: "",
+    adres: "",
+    geslacht: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -23,30 +23,30 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('../api/signup', {
-        method: 'POST',
+      const response = await fetch("../api/signup", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
       const result = await response.json();
       if (result.success) {
-        alert('Account created successfully!');
+        alert("Account created successfully!");
         setFormData({
-          naam: '',
-          voornaam: '',
-          gsmnummer: '',
-          adres: '',
-          geslacht: '',
-          email: '',
-          password: ''
+          naam: "",
+          voornaam: "",
+          gsmnummer: "",
+          adres: "",
+          geslacht: "",
+          email: "",
+          password: "",
         });
       } else {
-        alert('Failed to create account: ' + result.error);
+        alert("Failed to create account: " + result.error);
       }
     } catch (error) {
-      alert('Failed to send data: ' + error.message);
+      alert("Failed to send data: " + error.message);
     }
   };
 
@@ -62,7 +62,7 @@ export default function SignUp() {
             <h3 className="text-2xl font-bold sm:text-3xl">Sign up</h3>
             <p>
               Already have an account?{" "}
-              <Link href="/login" legacyBehavior>
+              <Link href="/Login" legacyBehavior>
                 <a className="font-medium text-indigo-600 hover:text-indigo-500">
                   Log in
                 </a>
@@ -123,7 +123,7 @@ export default function SignUp() {
                     name="geslacht"
                     required
                     className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg appearance-none"
-                    style={{ background: 'black', color: 'white' }}
+                    style={{ background: "black", color: "white" }}
                     value={formData.geslacht}
                     onChange={handleChange}
                   >

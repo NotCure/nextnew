@@ -32,7 +32,7 @@ export default function Login() {
       });
       const result = await response.json();
       if (result.success) {
-        login(result.user); // Pass the user data object received from the API
+        login(result.user);
         router.push("/");
       } else {
         setError(result.error || "Failed to login");
@@ -89,10 +89,8 @@ export default function Login() {
             </button>
           </form>
           <div className="text-center pt-4">
-            <Link href="/forgot-password" legacyBehavior>
-              <a className="hover:opacity-50 transition-all">
-                Forgot password?
-              </a>
+            <Link href="/SignUp" legacyBehavior>
+              <a className="hover:opacity-50 transition-all">Sign Up</a>
             </Link>
           </div>
         </div>
