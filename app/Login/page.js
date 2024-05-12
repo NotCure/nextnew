@@ -1,47 +1,46 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
 import Navbar from "@/app/_components/navbar/navbar";
 import Header from "@/app/_components/header/Header";
 import Title from "@/app/_components/title/Title";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
-import { useAuth } from '../_context/AuthContext';
+import { useRouter } from "next/navigation";
+import { useAuth } from "../_context/AuthContext";
 
 export default function Login() {
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState("");  // Added error state
-  const { login } = useAuth();  // Get login function from context
+  const [error, setError] = useState("");
+  const { login } = useAuth();
   const router = useRouter();
-
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    setError(""); // Clear error when user modifies input
+    setError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('../api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(credentials)
-        });
-        const result = await response.json();
-        if (result.success) {
-            login(result.user);  // Set user in context
-            router.push('/');  // Redirect to homepage
-        } else {
-            setError(result.error || 'Failed to login');
-        }
+      const response = await fetch("../api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+      });
+      const result = await response.json();
+      if (result.success) {
+        login(result.user); // Pass the user data object received from the API
+        router.push("/");
+      } else {
+        setError(result.error || "Failed to login");
+      }
     } catch (error) {
-        setError('Failed to send data: ' + error.message);
+      setError("Failed to send data: " + error.message);
     }
-};
+  };
 
   return (
     <>
@@ -51,7 +50,11 @@ export default function Login() {
 
       <main className="w-full h-screen flex flex-col items-center mt-16 px-4">
         <div className="max-w-sm w-full text-white">
-          <h1 className={`flex justify-center text-red-500 ${error ? "visible" : "invisible"}`}>
+          <h1
+            className={`flex justify-center text-red-500 ${
+              error ? "visible" : "invisible"
+            }`}
+          >
             {error || "Placeholder to maintain layout"}
           </h1>
 
@@ -78,7 +81,10 @@ export default function Login() {
                 onChange={handleChange}
               />
             </div>
-            <button type="submit" className="w-full px-4 py-2 text-white font-medium border border-white rounded-2xl duration-150">
+            <button
+              type="submit"
+              className="w-full px-4 py-2 text-white font-medium border border-white rounded-2xl duration-150"
+            >
               Sign in
             </button>
           </form>
@@ -94,4 +100,3 @@ export default function Login() {
     </>
   );
 }
-

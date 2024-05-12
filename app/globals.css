@@ -127,3 +127,7 @@
 .full-width-container {
   width: 100%;
 }
+
+.image-min-width {
+  min-width: 48px;
+}

@@ -3,10 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "../../_context/AuthContext"; // import useAuth
+import { useAuth } from "../../_context/AuthContext";
 
 const NavigationLinks = () => {
   const { user } = useAuth();
+
+  const isAdmin = user && user.isAdmin;
+  const isLoggedIn = !!user;
 
   return (
     <div className="flex items-center space-x-20">
@@ -18,55 +21,78 @@ const NavigationLinks = () => {
         layout="fixed"
       />
 
-      {user ? (
+      {isLoggedIn && isAdmin && (
         <>
           <Link
-            href="/AboutUs"
-            className="text-white  font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+            href="/admin"
+            className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
           >
-            My Profile
+            Admin
           </Link>
           <Link
             href="/"
-            className="actief text-white  font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
-          >
-            Home
-          </Link>
-        </>
-      ) : (
-        <>
-          <Link
-            href="/"
-            className="actief text-white  font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+            className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
           >
             Home
           </Link>
         </>
       )}
 
+      {isLoggedIn && !isAdmin && (
+        <>
+          <Link
+            href="/appointment"
+            className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+          >
+            My Appointment
+          </Link>
+          <Link
+            href="/"
+            className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+          >
+            Home
+          </Link>
+        </>
+      )}
+
+      {!isLoggedIn && (
+        <Link
+          href="/"
+          className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+        >
+          Home
+        </Link>
+      )}
+
       <Link
         href="/AboutUs"
-        className="text-white  font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+        className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
       >
         About Us
       </Link>
       <Link
         href="/Services"
-        className="text-white  font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+        className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
       >
         Services
       </Link>
       <Link
         href="/News"
-        className="text-white  font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+        className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
       >
         News
       </Link>
       <Link
         href="/FAQ"
-        className="text-white  font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+        className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
       >
         FAQ
+      </Link>
+      <Link
+        href="/Contact"
+        className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
+      >
+        Contact
       </Link>
     </div>
   );

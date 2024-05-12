@@ -8,9 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (userData) => {
-    setUser(userData);
-  };
+    const isAdmin = userData && userData.isAdmin;
+    console.log("Logging in user:", userData);
 
+    setUser({ ...userData, isAdmin });
+  };
   const logout = () => {
     setUser(null);
   };

@@ -45,9 +45,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <h1>FAQ</h1>
         </Link>
         <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 dark:bg-white w-80" />
+        <Link href="/Contact">
+          <h1>Contact</h1>
+        </Link>
+        <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 dark:bg-white w-80" />
         {user ? (
           <Link href="/FAQ">
-            <h1>My Profile</h1>
+            <h1>My Appointment</h1>
           </Link>
         ) : (
           <div></div>
