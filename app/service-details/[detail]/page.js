@@ -24,14 +24,7 @@ const ServiceDetail = () => {
   }
 
   const renderReportType = () => {
-    if (service === "Traffic") {
-      return <TypeTwo />;
-    } else if (service === "Crashes") {
-      return <TypeOne />;
-    } else if (service === "Parking" || service === "Wreck") {
-      return <TypeThree />;
-    }
-    return <TypeThree />;
+    return <TypeOne />;
   };
 
   return (

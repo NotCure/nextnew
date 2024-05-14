@@ -27,7 +27,7 @@ export default function Login() {
       });
       const result = await response.json();
       if (result.success) {
-        localStorage.setItem("user", JSON.stringify(result.user)); // Store user info in local storage
+        localStorage.setItem("user", JSON.stringify(result.user));
         router.push("/");
       } else {
         setError(result.error || "Failed to login");

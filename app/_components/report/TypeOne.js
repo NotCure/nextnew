@@ -3,6 +3,9 @@ import React, { useState } from "react";
 const TypeOne = () => {
   const [useCurrentAddress, setUseCurrentAddress] = useState(false);
   const [address, setAddress] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleCheckboxChange = () => {
     setUseCurrentAddress((prev) => !prev);
@@ -16,7 +19,7 @@ const TypeOne = () => {
         }
       );
     } else {
-      setAddress(""); 
+      setAddress(""); // Clear the address when unchecked
     }
   };
 
@@ -39,46 +42,59 @@ const TypeOne = () => {
       });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await fetch("../../api/submitReport", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Datetime: new Date().toISOString(), // Sending current datetime in ISO format
+          Location: address,
+          Email: email,
+          Description: message,
+        }),
+      });
+      const responseData = await response.json();
+      if (response.ok) {
+        console.log("Response:", responseData.message);
+        alert(responseData.message);
+      } else {
+        throw new Error(responseData.error);
+      }
+    } catch (error) {
+      console.error("Submission error:", error.message);
+      alert("Failed to submit report: " + error.message);
+    }
+  };
+
   return (
     <section className="bg-transparent flex justify-center items-center">
       <div className="max-w-screen-xl px-4 sm:px-6 lg:px-8 w-full flex justify-center">
         <div className="w-full max-w-3xl">
           <div className="rounded-lg bg-transparent p-8 shadow-lg lg:p-12">
-            <form action="#" className="space-y-4">
+            <form action="#" onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="sr-only" htmlFor="name">
-                  Name
-                </label>
                 <input
-                  className="w-full rounded-lg border-gray-200 p-3 px-12 text-sm md:p-4"
+                  className="w-full rounded-lg border-gray-200 p-3 px-12 text-sm md:p-4 md:px-28"
                   placeholder="Name"
                   type="text"
                   id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="sr-only" htmlFor="email">
-                    Email
-                  </label>
-                  <input
-                    className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
-                    placeholder="Email address"
-                    type="email"
-                    id="email"
-                  />
-                </div>
-                <div>
-                  <label className="sr-only" htmlFor="phone">
-                    Phone
-                  </label>
-                  <input
-                    className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
-                    placeholder="Phone Number"
-                    type="tel"
-                    id="phone"
-                  />
-                </div>
+              <div>
+                <input
+                  className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                  placeholder="Email address"
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
               <div>
                 <input
@@ -101,7 +117,9 @@ const TypeOne = () => {
                   </span>
                 </label>
                 <input
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                  className={`w-full rounded-lg border-gray-200 p-3 text-sm md:p-4 ${
+                    useCurrentAddress ? "text-white" : "text-gray-900"
+                  }`}
                   placeholder="Address"
                   type="text"
                   id="address1"
@@ -111,14 +129,13 @@ const TypeOne = () => {
                 />
               </div>
               <div>
-                <label className="sr-only" htmlFor="message">
-                  Message
-                </label>
                 <textarea
                   className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
                   placeholder="Message"
                   rows="8"
                   id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
               <div className="mt-4">
