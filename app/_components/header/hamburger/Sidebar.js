@@ -79,6 +79,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <Link href="/Admin">
               <h1>Admin</h1>
             </Link>
+            <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 dark:bg-white w-80" />
+
+            <Link href="/Reports">
+              <h1>Reports</h1>
+            </Link>
           </>
         )}
 

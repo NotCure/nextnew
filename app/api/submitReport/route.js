@@ -27,13 +27,23 @@ async function getRandomAgentId() {
 export async function POST(request) {
   try {
     const data = await request.json();
-    const { Datetime, Location, Email, Description } = data;
+    const { Datetime, Location, Email, Description, Latitude, Longitude } =
+      data;
     const AgentID = await getRandomAgentId();
 
     const insertResults = await query({
       query:
-        "INSERT INTO tblReport (Datetime, Location, Email, Description, Status, AgentID) VALUES (?, ?, ?, ?, ?, ?)",
-      values: [Datetime, Location, Email, Description, "1", AgentID], // Assuming default status '1'
+        "INSERT INTO tblReport (Datetime, Location, Email, Description, Latitude, Longitude, Status, AgentID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+      values: [
+        Datetime,
+        Location,
+        Email,
+        Description,
+        Latitude,
+        Longitude,
+        "1",
+        AgentID,
+      ], // Assuming default status '1'
     });
 
     return new Response(

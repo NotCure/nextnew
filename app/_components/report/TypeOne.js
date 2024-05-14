@@ -3,6 +3,8 @@ import React, { useState } from "react";
 const TypeOne = () => {
   const [useCurrentAddress, setUseCurrentAddress] = useState(false);
   const [address, setAddress] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -12,6 +14,8 @@ const TypeOne = () => {
     if (!useCurrentAddress) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          setLatitude(position.coords.latitude);
+          setLongitude(position.coords.longitude);
           fetchAddress(position.coords.latitude, position.coords.longitude);
         },
         (error) => {
@@ -20,6 +24,8 @@ const TypeOne = () => {
       );
     } else {
       setAddress(""); // Clear the address when unchecked
+      setLatitude("");
+      setLongitude("");
     }
   };
 
@@ -45,7 +51,7 @@ const TypeOne = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("../../api/submitReport", {
+      const response = await fetch("/api/submitReport", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,12 +61,14 @@ const TypeOne = () => {
           Location: address,
           Email: email,
           Description: message,
+          Latitude: latitude,
+          Longitude: longitude,
         }),
       });
       const responseData = await response.json();
       if (response.ok) {
-        console.log("Response:", responseData.message);
-        alert(responseData.message);
+        console.log("Response:", responseData.message); // Success message
+        alert(responseData.message); // Show a success message to the user
       } else {
         throw new Error(responseData.error);
       }
