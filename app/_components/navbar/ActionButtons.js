@@ -1,12 +1,26 @@
 // ActionButtons.js
 "use client";
 
-import { useAuth } from "../../_context/AuthContext";
-
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ActionButtons = () => {
-  let { user, logout } = useAuth();
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const userJson = localStorage.getItem("user");
+    if (userJson) {
+      setUser(JSON.parse(userJson));
+    }
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    router.refresh();
+  };
 
   return (
     <div className="flex items-center space-x-4">

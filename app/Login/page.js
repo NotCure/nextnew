@@ -6,15 +6,10 @@ import Header from "@/app/_components/header/Header";
 import Title from "@/app/_components/title/Title";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../_context/AuthContext";
 
 export default function Login() {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  const { login } = useAuth();
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -32,7 +27,7 @@ export default function Login() {
       });
       const result = await response.json();
       if (result.success) {
-        login(result.user);
+        localStorage.setItem("user", JSON.stringify(result.user)); // Store user info in local storage
         router.push("/");
       } else {
         setError(result.error || "Failed to login");
@@ -57,7 +52,6 @@ export default function Login() {
           >
             {error || "Placeholder to maintain layout"}
           </h1>
-
           <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
             <div>
               <label className="font-medium">Email</label>
@@ -65,7 +59,7 @@ export default function Login() {
                 type="email"
                 name="email"
                 required
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-white focus:border-2 shadow-sm rounded-lg"
                 value={credentials.email}
                 onChange={handleChange}
               />
@@ -76,7 +70,7 @@ export default function Login() {
                 type="password"
                 name="password"
                 required
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-white focus:border-2 shadow-sm rounded-lg"
                 value={credentials.password}
                 onChange={handleChange}
               />

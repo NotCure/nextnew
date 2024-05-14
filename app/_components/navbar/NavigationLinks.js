@@ -1,12 +1,17 @@
 "use client";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "../../_context/AuthContext";
 
 const NavigationLinks = () => {
-  const { user } = useAuth();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userJson = localStorage.getItem("user");
+    if (userJson) {
+      setUser(JSON.parse(userJson));
+    }
+  }, []);
 
   const isAdmin = user && user.isAdmin;
   const isLoggedIn = !!user;
@@ -15,7 +20,7 @@ const NavigationLinks = () => {
     <div className="flex items-center space-x-20">
       <Image
         src="/logos/HamburgerWhite.png"
-        alt="HamburgerMenu"
+        alt="Hamburger Menu"
         width={40}
         height={40}
         layout="fixed"
@@ -41,7 +46,7 @@ const NavigationLinks = () => {
       {isLoggedIn && !isAdmin && (
         <>
           <Link
-            href="/appointment"
+            href="/Appointment"
             className="text-white font-medium relative text-xl w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-white after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-center"
           >
             My Appointment

@@ -131,3 +131,8 @@
 .image-min-width {
   min-width: 48px;
 }
+
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}

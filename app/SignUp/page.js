@@ -63,21 +63,19 @@ export default function SignUp() {
             <p>
               Already have an account?{" "}
               <Link href="/Login" legacyBehavior>
-                <a className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Log in
-                </a>
+                <a className="font-medium text-gray-400">Log in</a>
               </Link>
             </p>
 
             <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
               <div className="space-y-5">
                 <div>
-                  <label className="font-medium">Naam</label>
+                  <label className="font-medium ">Naam</label>
                   <input
                     type="text"
                     name="naam"
                     required
-                    className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.naam}
                     onChange={handleChange}
                   />
@@ -88,7 +86,7 @@ export default function SignUp() {
                     type="text"
                     name="voornaam"
                     required
-                    className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.voornaam}
                     onChange={handleChange}
                   />
@@ -99,7 +97,7 @@ export default function SignUp() {
                     type="tel"
                     name="gsmnummer"
                     required
-                    className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.gsmnummer}
                     onChange={handleChange}
                   />
@@ -112,7 +110,7 @@ export default function SignUp() {
                     type="text"
                     name="adres"
                     required
-                    className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.adres}
                     onChange={handleChange}
                   />
@@ -122,7 +120,7 @@ export default function SignUp() {
                   <select
                     name="geslacht"
                     required
-                    className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg appearance-none"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg appearance-none"
                     style={{ background: "black", color: "white" }}
                     value={formData.geslacht}
                     onChange={handleChange}
@@ -138,7 +136,7 @@ export default function SignUp() {
                     type="email"
                     name="email"
                     required
-                    className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -150,7 +148,7 @@ export default function SignUp() {
                   type="password"
                   name="password"
                   required
-                  className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                  className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
                   value={formData.password}
                   onChange={handleChange}
                 />

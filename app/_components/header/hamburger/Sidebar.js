@@ -1,12 +1,35 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
+
 import Link from "next/link"; // Import the Link component from next/link
 import ActionButtons from "../../navbar/ActionButtons";
-import { useAuth } from "../../../_context/AuthContext";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  let { user, logout } = useAuth();
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    const userJson = window.localStorage.getItem("user");
+    if (userJson) {
+      setUser(JSON.parse(userJson));
+    }
+
+    // Handle body class for no-scroll
+    const body = document.body;
+    if (isOpen) {
+      body.classList.add("no-scroll");
+    } else {
+      body.classList.remove("no-scroll");
+    }
+
+    // Clean up function
+    return () => {
+      body.classList.remove("no-scroll");
+    };
+  }, [isOpen]);
+
+  const isLoggedIn = !!user;
+  const isAdmin = user && user.isAdmin;
   return (
     <div
       className={`fixed top-0 left-0 bottom-0 h-full z-10 transform ${
@@ -48,15 +71,30 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <Link href="/Contact">
           <h1>Contact</h1>
         </Link>
-        <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 dark:bg-white w-80" />
-        {user ? (
-          <Link href="/FAQ">
-            <h1>My Appointment</h1>
-          </Link>
-        ) : (
-          <div></div>
+
+        {isLoggedIn && isAdmin && (
+          <>
+            <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 dark:bg-white w-80" />
+
+            <Link href="/Admin">
+              <h1>Admin</h1>
+            </Link>
+          </>
         )}
+
+        {isLoggedIn && !isAdmin && (
+          <>
+            <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 dark:bg-white w-80" />
+
+            <Link href="/Appointment">
+              <h1>My Appointment</h1>
+            </Link>
+          </>
+        )}
+
+        {!isLoggedIn && <></>}
       </div>
+
       <div className="flex justify-center pt-10">
         <ActionButtons />
       </div>

@@ -1,98 +1,139 @@
-import React from "react";
+import React, { useState } from "react";
 
 const TypeOne = () => {
+  const [useCurrentAddress, setUseCurrentAddress] = useState(false);
+  const [address, setAddress] = useState("");
+
+  const handleCheckboxChange = () => {
+    setUseCurrentAddress((prev) => !prev);
+    if (!useCurrentAddress) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          fetchAddress(position.coords.latitude, position.coords.longitude);
+        },
+        (error) => {
+          console.error("Error fetching location", error);
+        }
+      );
+    } else {
+      setAddress(""); 
+    }
+  };
+
+  const fetchAddress = (lat, lon) => {
+    const apiKey = "ccc00906832949edac05d667655e36b3"; // Replace with your actual API key
+    const url = `https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=${apiKey}`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.features && data.features.length > 0) {
+          setAddress(data.features[0].properties.formatted);
+        } else {
+          setAddress("Address not found");
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to fetch address", error);
+        setAddress("Failed to fetch address");
+      });
+  };
+
   return (
-    <div>
-      <form className="max-w-md mx-auto">
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="email"
-            name="floating_email"
-            id="floating_email"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            for="floating_email"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Email
-          </label>
-        </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="password"
-            name="floating_password"
-            id="floating_password"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            for="floating_password"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Sort vehicle
-          </label>
-        </div>
-        <div className="relative z-0 w-full mb-5 group">
-          <input
-            type="password"
-            name="repeat_password"
-            id="floating_repeat_password"
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-            placeholder=" "
-            required
-          />
-          <label
-            for="floating_repeat_password"
-            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >
-            Crash level from 1 to 10
-          </label>
-        </div>
-        <div className="grid md:grid-cols-2 md:gap-6">
-          <div className="relative z-0 w-full mb-5 group">
-            <input
-              type="text"
-              name="floating_first_name"
-              id="floating_first_name"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              for="floating_first_name"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Adress
-            </label>
+    <section className="bg-transparent flex justify-center items-center">
+      <div className="max-w-screen-xl px-4 sm:px-6 lg:px-8 w-full flex justify-center">
+        <div className="w-full max-w-3xl">
+          <div className="rounded-lg bg-transparent p-8 shadow-lg lg:p-12">
+            <form action="#" className="space-y-4">
+              <div>
+                <label className="sr-only" htmlFor="name">
+                  Name
+                </label>
+                <input
+                  className="w-full rounded-lg border-gray-200 p-3 px-12 text-sm md:p-4"
+                  placeholder="Name"
+                  type="text"
+                  id="name"
+                />
+              </div>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="sr-only" htmlFor="email">
+                    Email
+                  </label>
+                  <input
+                    className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                    placeholder="Email address"
+                    type="email"
+                    id="email"
+                  />
+                </div>
+                <div>
+                  <label className="sr-only" htmlFor="phone">
+                    Phone
+                  </label>
+                  <input
+                    className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                    placeholder="Phone Number"
+                    type="tel"
+                    id="phone"
+                  />
+                </div>
+              </div>
+              <div>
+                <input
+                  className="sr-only"
+                  id="Option1"
+                  type="checkbox"
+                  tabIndex="-1"
+                  name="option"
+                  checked={useCurrentAddress}
+                  onChange={handleCheckboxChange}
+                />
+                <label
+                  htmlFor="Option1"
+                  className={`block cursor-pointer rounded-lg p-3 text-white mb-4 flex justify-center items-center ${
+                    useCurrentAddress ? "border-2 " : "border "
+                  }`}
+                >
+                  <span className="text-sm text-center">
+                    Use Current Address
+                  </span>
+                </label>
+                <input
+                  className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                  placeholder="Address"
+                  type="text"
+                  id="address1"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  disabled={useCurrentAddress}
+                />
+              </div>
+              <div>
+                <label className="sr-only" htmlFor="message">
+                  Message
+                </label>
+                <textarea
+                  className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                  placeholder="Message"
+                  rows="8"
+                  id="message"
+                ></textarea>
+              </div>
+              <div className="mt-4">
+                <button
+                  type="submit"
+                  className="inline-block w-full rounded-lg bg-transparent px-5 py-3 font-medium text-white sm:w-auto border border-white"
+                >
+                  Send Report
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="relative z-0 w-full mb-5 group">
-            <input
-              type="text"
-              name="floating_last_name"
-              id="floating_last_name"
-              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-              placeholder=" "
-              required
-            />
-            <label
-              for="floating_last_name"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-            >
-              Note
-            </label>
-          </div>
         </div>
-        <div classNameName="flex justify-center">
-          <button classNameName="mt-10 border px-16 border-white py-2 text-white font-medium rounded-3xl duration-150 col-span-2">
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+      </div>
+    </section>
   );
 };
 
