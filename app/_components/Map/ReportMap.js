@@ -1,9 +1,25 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
+
+// Use dynamic import for client-side only
+const MapCenter = dynamic(
+  () =>
+    Promise.resolve(({ lat, lng }) => {
+      const map = useMap();
+      useEffect(() => {
+        if (lat && lng) {
+          map.setView([lat, lng], 15); // Zoom level set to 15 for a closer look
+        }
+      }, [lat, lng, map]);
+      return null;
+    }),
+  { ssr: false }
+);
 
 const originalWidth = 214;
 const originalHeight = 413;
@@ -17,24 +33,14 @@ const newShadowHeight =
   (originalShadowHeight / originalShadowWidth) * newShadowWidth; // Keeping aspect ratio
 
 const customIcon = new Icon({
-  iconUrl: "/assests/Marker.png", // Ensure this path is correct
-  shadowUrl: "/assests/MarkerShadow.png", // Ensure this path is correct
+  iconUrl: "/assets/Marker.png", // Ensure this path is correct
+  shadowUrl: "/assets/MarkerShadow.png", // Ensure this path is correct
   iconSize: [newWidth, newHeight], // Adjusted size keeping aspect ratio
   iconAnchor: [newWidth / 2, newHeight], // Adjust the anchor point as needed
   popupAnchor: [0, -newHeight], // Adjust the popup anchor point as needed
   shadowSize: [newShadowWidth, newShadowHeight], // Adjusted size keeping aspect ratio
-  shadowAnchor: [newShadowWidth / 4, newShadowHeight], // Adjust the shadow anchor point as needed
+  shadowAnchor: [newShadowWidth / 2, newShadowHeight], // Adjust the shadow anchor point as needed
 });
-
-const MapCenter = ({ lat, lng }) => {
-  const map = useMap();
-  useEffect(() => {
-    if (lat && lng) {
-      map.setView([lat, lng], 15); // Zoom level set to 15 for a closer look
-    }
-  }, [lat, lng, map]);
-  return null;
-};
 
 const ReportMap = ({ selectedLocation }) => {
   const [reports, setReports] = useState([]);
@@ -45,7 +51,7 @@ const ReportMap = ({ selectedLocation }) => {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch("../../api/getReports"); // Corrected the API endpoint
+      const response = await fetch("/api/getReportsWithAgents"); // Corrected the API endpoint
       const data = await response.json();
       setReports(data);
     } catch (error) {

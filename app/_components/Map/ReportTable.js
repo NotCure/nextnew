@@ -11,7 +11,7 @@ const ReportTable = ({ onSelectLocation }) => {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch("../../api/getReports");
+      const response = await fetch("/api/getReportsWithAgents");
       const data = await response.json();
       setTableItems(data);
     } catch (error) {
