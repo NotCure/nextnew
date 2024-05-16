@@ -6,7 +6,7 @@ import Title from "@/app/_components/title/Title";
 import ReportMap from "@/app/_components/Map/ReportMap";
 import ReportTable from "@/app/_components/Map/ReportTable";
 
-export default function Services() {
+export default function Reports() {
   const [selectedLocation, setSelectedLocation] = useState(null);
 
   const handleSelectLocation = (location) => {
