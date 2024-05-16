@@ -1,7 +1,14 @@
 import { query } from "@/app/_db/db";
 
-export async function DELETE(request, res) {
-  const { id } = request.query;
+export async function DELETE(request) {
+  const { pathname } = new URL(request.url);
+  const id = pathname.split("/").pop(); // Extract the ID from the URL
+
+  if (!id) {
+    return new Response(JSON.stringify({ error: "ID is required" }), {
+      status: 400,
+    });
+  }
 
   try {
     await query({
@@ -9,8 +16,10 @@ export async function DELETE(request, res) {
       values: [id],
     });
 
-    res.status(204).end();  // No content to send back, but signifies successful deletion
+    return new Response(null, { status: 204 }); // No content to send back, but signifies successful deletion
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
   }
 }

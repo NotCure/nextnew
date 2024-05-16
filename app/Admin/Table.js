@@ -23,8 +23,7 @@ const Table = () => {
       return;
     }
     try {
-      const response = await fetch(`/api/delete/${id}`, {
-        // Verify this endpoint
+      const response = await fetch(`../api/table/delete/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
@@ -36,6 +35,26 @@ const Table = () => {
       }
     } catch (error) {
       console.error("Error deleting item:", error);
+    }
+  };
+
+  const handlePromote = async (id) => {
+    console.log("Promoting ID:", id);
+    if (!id) {
+      console.error("Error: ID is undefined");
+      return;
+    }
+    try {
+      const response = await fetch(`../api/table/promote/${id}`, {
+        method: "POST",
+      });
+      if (response.ok) {
+        alert("Promotion successful!");
+      } else {
+        throw new Error("Failed to promote the item");
+      }
+    } catch (error) {
+      console.error("Error promoting item:", error);
     }
   };
 
@@ -58,22 +77,35 @@ const Table = () => {
             </tr>
           </thead>
           <tbody className="text-white divide-y">
-            {tableItems.map((item) => (
-              <tr key={item.BurgerID}>
-                <td className="px-6 py-4 whitespace-nowrap">{item.Naam}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.Geslacht}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.Email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{item.Password}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <button
-                    onClick={() => handleDelete(item.BurgerID)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {tableItems.map((item, index) => {
+              console.log("Item:", item); // Log the entire item to inspect its structure
+              return (
+                <tr key={item.BurgerID || index}>
+                  <td className="px-6 py-4 whitespace-nowrap">{item.Naam}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {item.Geslacht}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">{item.Email}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    {item.Password}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button
+                      onClick={() => handleDelete(item.BurgerID)}
+                      className="text-red-500 hover:text-red-700 mr-2"
+                    >
+                      Delete
+                    </button>
+                    <button
+                      onClick={() => handlePromote(item.BurgerID)}
+                      className="text-blue-500 hover:text-blue-700"
+                    >
+                      Promote
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

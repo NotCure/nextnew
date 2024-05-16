@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-
 import { useRouter } from "next/navigation";
 import Navbar from "@/app/_components/navbar/navbar";
 import Header from "@/app/_components/header/Header";

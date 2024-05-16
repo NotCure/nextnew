@@ -19,7 +19,7 @@ async function query({ query, values = [] }) {
 export async function GET(request) {
   try {
     const burgers = await query({
-      query: "SELECT Naam, Geslacht, Email, Password FROM tblBurgers",
+      query: "SELECT BurgerID, Naam, Geslacht, Email, Password FROM tblBurgers", // Include BurgerID
       values: [],
     });
 
