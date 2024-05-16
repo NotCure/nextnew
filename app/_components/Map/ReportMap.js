@@ -51,7 +51,7 @@ const ReportMap = ({ selectedLocation }) => {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch("/api/getReportsWithAgents"); // Corrected the API endpoint
+      const response = await fetch("../../api/getReports"); // Corrected the API endpoint
       const data = await response.json();
       setReports(data);
     } catch (error) {
