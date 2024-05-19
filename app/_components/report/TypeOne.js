@@ -8,6 +8,7 @@ const TypeOne = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [statusMessage, setStatusMessage] = useState(""); // State for status message
 
   const handleCheckboxChange = () => {
     setUseCurrentAddress((prev) => !prev);
@@ -64,17 +65,13 @@ const TypeOne = () => {
       });
       const responseData = await response.json();
       if (response.ok) {
-        alert(
-          responseData.success
-            ? "Report submitted successfully!"
-            : "Failed to submit report"
-        );
+        setStatusMessage("Report submitted successfully!"); // Set success message
       } else {
         throw new Error(responseData.error || "An unknown error occurred");
       }
     } catch (error) {
       console.error("Submission error:", error.message);
-      alert("Failed to submit report: " + error.message);
+      setStatusMessage(`Failed to submit report: ${error.message}`); // Set error message
     }
   };
 
@@ -154,6 +151,9 @@ const TypeOne = () => {
                   Send Report
                 </button>
               </div>
+              {statusMessage && (
+                <div className="mt-4 text-blue-500">{statusMessage}</div>
+              )}
             </form>
           </div>
         </div>

@@ -52,7 +52,9 @@ const ServiceDetail = () => {
                 key={service.id}
                 onClick={() => setMainImage(service.image)}
                 className={`flex flex-col items-center text-white cursor-pointer p-2 ${
-                  mainImage === service.image ? "ring-4 ring-white" : ""
+                  mainImage === service.image
+                    ? "ring-4 ring-white dark:ring-black"
+                    : ""
                 }`}
               >
                 <Image
@@ -62,7 +64,9 @@ const ServiceDetail = () => {
                   height={48}
                   className="image-min-width"
                 />
-                <p className="mt-2 text-center">{service.name}</p>
+                <p className="mt-2 text-center text-white dark:text-black">
+                  {service.name}
+                </p>
               </a>
             ))}
           </div>

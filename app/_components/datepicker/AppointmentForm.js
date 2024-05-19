@@ -81,7 +81,7 @@ const AppointmentForm = ({ onSubmit }) => {
     <section className="bg-transparent flex justify-center items-center">
       <div className="max-w-screen-xl px-4 sm:px-6 lg:px-8 w-full flex justify-center">
         <div className="w-full max-w-3xl">
-          <div className="rounded-lg bg-transparent p-8 shadow-lg lg:p-12">
+          <div className="rounded-lg bg-transparent p-8 lg:p-12">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex space-x-4">
                 <div className="w-full">
@@ -92,7 +92,7 @@ const AppointmentForm = ({ onSubmit }) => {
                     customInput={
                       <input
                         type="text"
-                        className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4 md:pr-48 bg-white"
+                        className="w-full shadow-lg rounded-lg bg-white border-gray-200 p-3 text-sm md:p-4 md:pr-48 "
                       />
                     }
                     className="w-full"
@@ -112,7 +112,7 @@ const AppointmentForm = ({ onSubmit }) => {
                     customInput={
                       <input
                         type="text"
-                        className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4 md:pr-48 bg-white"
+                        className="w-full shadow-lg rounded-lg bg-white border-gray-200 p-3 text-sm md:p-4 md:pr-48 bg-white"
                       />
                     }
                     className="w-full"
@@ -124,7 +124,7 @@ const AppointmentForm = ({ onSubmit }) => {
 
               <div>
                 <textarea
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                  className="w-full shadow-lg rounded-lg bg-white border-gray-200 p-3 text-sm md:p-4"
                   placeholder="Message"
                   rows="8"
                   id="message"
@@ -135,7 +135,7 @@ const AppointmentForm = ({ onSubmit }) => {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-transparent px-5 py-3 font-medium text-white sm:w-auto border border-white"
+                  className="dark:border-black  dark:text-black inline-block w-full rounded-lg bg-transparent px-5 py-3 font-medium text-white sm:w-auto border border-white"
                 >
                   Make Appointment
                 </button>

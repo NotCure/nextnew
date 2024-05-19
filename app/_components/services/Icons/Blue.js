@@ -63,7 +63,7 @@ const BlueIcon = () => {
         <div className="flex justify-center">
           <button
             onClick={handleAppointmentClick}
-            className="mt-2 text-gray-300 text-sm text-center"
+            className="mt-2 text-gray-400 text-sm text-center"
           >
             Make an appointment
           </button>
