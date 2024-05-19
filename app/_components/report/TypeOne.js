@@ -85,7 +85,7 @@ const TypeOne = () => {
             <form action="#" onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input
-                  className="w-full rounded-lg  dark:border-black p-3 mr-12 text-sm md:p-4 md:mr-40 bg-white  shadow-lg"
+                  className="w-full rounded-lg dark:text-black dark:border-black p-3 mr-12 text-sm md:p-4 md:mr-40 bg-white  shadow-lg"
                   placeholder="Name"
                   type="text"
                   id="name"
@@ -95,7 +95,7 @@ const TypeOne = () => {
               </div>
               <div>
                 <input
-                  className="w-full rounded-lg  dark:border-black p-3 text-sm md:p-4 bg-white shadow-lg"
+                  className="w-full rounded-lg dark:text-black dark:border-black p-3 text-sm md:p-4 bg-white shadow-lg"
                   placeholder="Email address"
                   type="email"
                   id="email"
