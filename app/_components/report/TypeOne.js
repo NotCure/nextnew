@@ -137,7 +137,7 @@ const TypeOne = () => {
               </div>
               <div>
                 <textarea
-                  className="w-full rounded-lg  border-black p-3 text-sm md:p-4 bg-white  shadow-lg"
+                  className="w-full rounded-lg dark:text-black border-black p-3 text-sm md:p-4 bg-white  shadow-lg"
                   placeholder="Message"
                   rows="8"
                   id="message"
