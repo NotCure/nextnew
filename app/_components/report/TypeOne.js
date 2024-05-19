@@ -125,9 +125,7 @@ const TypeOne = () => {
                 </label>
                 <input
                   className={`w-full rounded-lg   dark:border-black p-3 text-sm md:p-4 bg-white  shadow-lg ${
-                    useCurrentAddress
-                      ? "text-white dark:text-black"
-                      : "text-gray-900"
+                    useCurrentAddress ? " dark:text-black" : "text-gray-900"
                   }`}
                   placeholder="Address"
                   type="text"
