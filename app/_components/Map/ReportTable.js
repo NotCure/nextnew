@@ -22,13 +22,13 @@ const ReportTable = ({ onSelectLocation }) => {
   return (
     <div className="max-w-screen-xl mx-auto px-4 md:px-8">
       <div className="max-w-lg">
-        <h3 className="text-white text-xl font-bold sm:text-2xl">
+        <h3 className="text-white dark:text-black text-xl font-bold sm:text-2xl">
           Reports Table
         </h3>
       </div>
       <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
         <table className="w-full table-auto text-sm text-left">
-          <thead className="bg-transparent text-white font-medium border-b">
+          <thead className="bg-transparent text-white dark:text-black font-medium border-b">
             <tr>
               <th className="py-3 px-6">Datetime</th>
               <th className="py-3 px-6">Location</th>
@@ -36,7 +36,7 @@ const ReportTable = ({ onSelectLocation }) => {
               <th className="py-3 px-6">Agent Name</th>
             </tr>
           </thead>
-          <tbody className="text-white divide-y">
+          <tbody className="text-white dark:text-black divide-y">
             {tableItems.map((item) => (
               <tr key={item.ReportID}>
                 <td className="px-6 py-4 whitespace-nowrap">

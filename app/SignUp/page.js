@@ -58,46 +58,48 @@ export default function SignUp() {
 
       <main className="flex justify-center pt-14">
         <div className="flex justify-center h-screen">
-          <div className="max-w-2xl space-y-8 px-4 bg-black text-white sm:px-6">
+          <div className="max-w-2xl space-y-8 px-4 dark:text-black text-white sm:px-6">
             <h3 className="text-2xl font-bold sm:text-3xl">Sign up</h3>
             <p>
               Already have an account?{" "}
               <Link href="/Login" legacyBehavior>
-                <a className="font-medium text-gray-400">Log in</a>
+                <a className="font-medium text-gray-400 dark:text-black">
+                  Log in
+                </a>
               </Link>
             </p>
 
             <form className="grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
               <div className="space-y-5">
                 <div>
-                  <label className="font-medium ">Naam</label>
+                  <label className="font-medium ">Name</label>
                   <input
                     type="text"
                     name="naam"
                     required
-                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 dark:text-black text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.naam}
                     onChange={handleChange}
                   />
                 </div>
                 <div>
-                  <label className="font-medium">Voornaam</label>
+                  <label className="font-medium">Surname</label>
                   <input
                     type="text"
                     name="voornaam"
                     required
-                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 dark:text-black text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.voornaam}
                     onChange={handleChange}
                   />
                 </div>
                 <div>
-                  <label className="font-medium">Gsmnummer</label>
+                  <label className="font-medium">Number</label>
                   <input
                     type="tel"
                     name="gsmnummer"
                     required
-                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 dark:text-black text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.gsmnummer}
                     onChange={handleChange}
                   />
@@ -105,23 +107,22 @@ export default function SignUp() {
               </div>
               <div className="space-y-5">
                 <div>
-                  <label className="font-medium">Adres</label>
+                  <label className="font-medium">Adress</label>
                   <input
                     type="text"
                     name="adres"
                     required
-                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 dark:text-black text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.adres}
                     onChange={handleChange}
                   />
                 </div>
                 <div>
-                  <label className="font-medium">Geslacht</label>
+                  <label className="font-medium">Sex</label>
                   <select
                     name="geslacht"
                     required
-                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg appearance-none"
-                    style={{ background: "black", color: "white" }}
+                    className="focus:border-2 w-full mt-2 px-3 py-2 dark:text-black dark:bg-white text-white bg-black outline-none border shadow-sm rounded-lg appearance-none"
                     value={formData.geslacht}
                     onChange={handleChange}
                   >
@@ -136,7 +137,7 @@ export default function SignUp() {
                     type="email"
                     name="email"
                     required
-                    className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                    className="focus:border-2 w-full mt-2 px-3 py-2 dark:text-black text-white bg-transparent outline-none border shadow-sm rounded-lg"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -148,12 +149,12 @@ export default function SignUp() {
                   type="password"
                   name="password"
                   required
-                  className="focus:border-2 w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border shadow-sm rounded-lg"
+                  className="focus:border-2 w-full mt-2 px-3 py-2 dark:text-black text-white bg-transparent outline-none border shadow-sm rounded-lg"
                   value={formData.password}
                   onChange={handleChange}
                 />
               </div>
-              <button className="w-full border border-white px-4 py-2 text-white font-medium rounded-lg duration-150 col-span-2">
+              <button className="w-full border border-white dark:border-black px-4 py-2 dark:text-black text-white font-medium rounded-lg duration-150 col-span-2">
                 Create account
               </button>
             </form>

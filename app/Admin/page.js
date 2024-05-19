@@ -7,6 +7,7 @@ import Header from "@/app/_components/header/Header";
 import Title from "@/app/_components/title/Title";
 import Table from "./Table";
 import AgentTable from "./AdminTable";
+import AppointmentsTable from "./AppointmentsTable";
 
 const AdminMenu = () => {
   const router = useRouter();
@@ -28,6 +29,9 @@ const AdminMenu = () => {
       <Table />
       <div className="pt-20">
         <AgentTable />
+      </div>
+      <div className="pt-20">
+        <AppointmentsTable />
       </div>
     </>
   );

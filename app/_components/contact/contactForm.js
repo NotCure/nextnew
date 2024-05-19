@@ -8,12 +8,12 @@ const ContactForm = () => {
 
   if (state.succeeded) {
     return (
-      <div className="bg-black p-8 rounded-lg flex justify-center">
+      <div className="bg-transparent p-8 rounded-lg flex justify-center">
         <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
           <div>
             <label
               htmlFor="email"
-              className="block text-white text-sm font-medium mb-2"
+              className="block text-white dark:text-black text-sm font-medium mb-2"
             >
               Email Address
             </label>
@@ -21,7 +21,7 @@ const ContactForm = () => {
               id="email"
               type="email"
               name="email"
-              className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 bg-white"
             />
             <ValidationError
               prefix="Email"
@@ -34,14 +34,14 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-white text-sm font-medium mb-2"
+              className="block text-white dark:text-black text-sm font-medium mb-2"
             >
               Message
             </label>
             <textarea
               id="message"
               name="message"
-              className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="w-full p-2 border border-gray-300 rounded-md bg-white"
               rows="4"
             ></textarea>
             <ValidationError
@@ -55,13 +55,12 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={state.submitting}
-            className="w-full p-2 text-white rounded-md border border-white disabled:bg-gray-500"
+            className="w-full p-2 text-white dark:text-black rounded-md border dark:border-black border-white disabled:bg-gray-500"
           >
             Submit
           </button>
           <div>
-            <h1 className="text-white">
-              {" "}
+            <h1 className="text-white dark:text-black">
               Thanks for contacting us! The Message is successfully sent!
             </h1>
           </div>
@@ -71,12 +70,12 @@ const ContactForm = () => {
   }
 
   return (
-    <div className="bg-black p-8 rounded-lg flex justify-center">
+    <div className="p-8 rounded-lg flex justify-center">
       <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
         <div>
           <label
             htmlFor="email"
-            className="block text-white text-sm font-medium mb-2"
+            className="block text-white dark:text-black text-sm font-medium mb-2"
           >
             Email Address
           </label>
@@ -84,7 +83,7 @@ const ContactForm = () => {
             id="email"
             type="email"
             name="email"
-            className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+            className="w-full p-2 border border-gray-300 rounded-md bg-white shadow-lg"
           />
           <ValidationError
             prefix="Email"
@@ -97,14 +96,14 @@ const ContactForm = () => {
         <div>
           <label
             htmlFor="message"
-            className="block text-white text-sm font-medium mb-2"
+            className="block text-white dark:text-black text-sm font-medium mb-2 "
           >
             Message
           </label>
           <textarea
             id="message"
             name="message"
-            className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+            className="w-full p-2 border border-gray-300 rounded-md bg-white shadow-lg"
             rows="4"
           ></textarea>
           <ValidationError
@@ -118,7 +117,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={state.submitting}
-          className="w-full p-2 text-white rounded-md border border-white"
+          className="w-full p-2 text-white dark:text-black rounded-md border dark:border-black border-white  "
         >
           Submit
         </button>

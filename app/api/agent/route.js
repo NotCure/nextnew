@@ -1,4 +1,3 @@
-// pages/api/agents.js
 import mysql from "mysql2/promise";
 
 async function query({ query, values = [] }) {
@@ -20,7 +19,7 @@ async function query({ query, values = [] }) {
 export async function GET(request) {
   try {
     const agents = await query({
-      query: "SELECT Name, Rank, Email, Password FROM tblAgenten",
+      query: "SELECT AgentID, Name, Rank, Email, Password FROM tblAgenten", // Include AgentID
       values: [],
     });
 
@@ -31,6 +30,7 @@ export async function GET(request) {
       },
     });
   } catch (error) {
+    console.error("Error fetching agents:", error); // Log the error for debugging
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: {

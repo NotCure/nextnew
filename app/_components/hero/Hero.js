@@ -10,8 +10,8 @@ const SLIDE_COUNT = 4;
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 const cardsData = [
   { number: "01", title: "Traffic", buttonText: "Visit" },
-  { number: "02", title: "Conversion", buttonText: "Explore" },
-  { number: "03", title: "Sales", buttonText: "Check Out" },
+  { number: "02", title: "Theft", buttonText: "Explore" },
+  { number: "03", title: "Requests", buttonText: "Check Out" },
   { number: "04", title: "Engagement", buttonText: "Engage" },
   { number: "05", title: "Engagement", buttonText: "Engage" },
 ];
@@ -21,7 +21,7 @@ const Hero = () => {
     <>
       <div className="flex flex-col items-center h-screen">
         <HeroText />
-        
+
         <div className="sm:hidden pt-40">
           {" "}
           {/* sm:hidden hides on screens larger than small */}

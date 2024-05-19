@@ -2,7 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-
+import { ThemeProvider } from "next-themes";
 config.autoAddCss = false;
 
 const poppins_font = Poppins({
@@ -20,9 +20,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${poppins_font.variable} poppin bg-black transition-all	`}
+        className={`${poppins_font.variable} poppin bg-black dark:bg-white transition-all	`}
       >
-        {children}
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
   );

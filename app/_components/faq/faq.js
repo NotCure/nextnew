@@ -19,12 +19,12 @@ const FaqsCard = (props) => {
       key={idx}
       onClick={handleOpenAnswer}
     >
-      <h4 className="cursor-pointer pb-5 flex items-center justify-between text-lg text-white font-medium">
+      <h4 className="cursor-pointer pb-5 flex items-center justify-between text-lg dark:text-black text-white font-medium">
         {faqsList.q}
         {state ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-white"
+            className="h-5 w-5 text-white dark:text-black"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -39,7 +39,7 @@ const FaqsCard = (props) => {
         ) : (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-gray-500 ml-2"
+            className="h-5 w-5 text-gray-500 ml-2 dark:text-black"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -59,7 +59,7 @@ const FaqsCard = (props) => {
         style={state ? { height: answerH } : { height: "0px" }}
       >
         <div>
-          <p className="text-white opacity-70">{faqsList.a}</p>
+          <p className="text-white opacity-70 dark:text-black">{faqsList.a}</p>
         </div>
       </div>
     </div>
@@ -69,20 +69,20 @@ const FaqsCard = (props) => {
 export default () => {
   const faqsList = [
     {
-      q: "Question",
-      a: "hey",
+      q: "How can I Quick-Report an issue?",
+      a: "Navigate to the 'Service' tab and click on the icon. Then, select 'Use Current Address' to allow our system to promptly identify your location. This ensures a faster response time.",
     },
     {
-      q: "Question",
-      a: "hey",
+      q: "How can I make an appointment?",
+      a: "Navigate to the 'Service' tab and click on 'Make an Appointment.' Select the appropriate service you need, and ensure you are logged in.",
     },
     {
-      q: "Question",
-      a: "hey",
+      q: "How can I see my appointments ?",
+      a: "You are able to see your appointments by logging in and then navigating to the 'My appointments'.",
     },
     {
-      q: "Question",
-      a: "hey",
+      q: "What is the fastest way to contact the administration?",
+      a: "The fastest way to contact the administration is by navigating to the 'Contact Us' tab. Ensure all fields are correctly filled out.",
     },
     {
       q: "Question?",
@@ -93,7 +93,7 @@ export default () => {
   return (
     <section className="leading-relaxed max-w-screen-xl mt-12 mx-auto px-4 md:px-8">
       <div className="space-y-3 text-center">
-        <p className="text-white max-w-lg mx-auto text-lg">
+        <p className="text-white max-w-lg mx-auto text-l dark:text-black">
           Answered all frequently asked questions, Still confused? feel free to
           contact us.
         </p>

@@ -6,6 +6,14 @@
   max-height: 100vh;
 }
 
+.background_white {
+  background-image: url("../../public/images/background_white.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  max-height: 100vh;
+}
+
 .gradientBack {
   background: rgb(0, 10, 18);
   background: linear-gradient(
@@ -19,6 +27,13 @@
 @media (max-width: 768px) {
   .background {
     background-image: url("../../public/images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    max-height: 120vh;
+  }
+  .background_white {
+    background-image: url("../../public/images/background_white.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

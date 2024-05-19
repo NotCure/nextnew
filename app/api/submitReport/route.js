@@ -1,4 +1,3 @@
-// app/api/submitReport.js
 import mysql from "mysql2/promise";
 
 async function query({ query, values = [] }) {
@@ -24,43 +23,23 @@ async function getRandomAgentId() {
   return agentResults[0].AgentID;
 }
 
-export async function POST(request) {
+export async function POST(req, res) {
+  if (req.method !== "POST") {
+    res.setHeader("Allow", ["POST"]);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+
   try {
-    const data = await request.json();
-    const { Datetime, Location, Email, Description, Latitude, Longitude } =
-      data;
-    const AgentID = await getRandomAgentId();
+    const { message, appointmentDateTime, userId } = req.body;
+    const agentId = await getRandomAgentId();
 
-    const insertResults = await query({
-      query:
-        "INSERT INTO tblReport (Datetime, Location, Email, Description, Latitude, Longitude, Status, AgentID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-      values: [
-        Datetime,
-        Location,
-        Email,
-        Description,
-        Latitude,
-        Longitude,
-        "1",
-        AgentID,
-      ], // Assuming default status '1'
+    const result = await query({
+      query: "INSERT INTO tblAfspraak (DateTime, Message, AgentID, BurgerID) VALUES (?, ?, ?, ?)",
+      values: [appointmentDateTime, message, agentId, userId],
     });
 
-    return new Response(
-      JSON.stringify({
-        success: true,
-        message: "Reported Successfully",
-        reportId: insertResults.insertId,
-      }),
-      {
-        status: 201,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    res.status(201).json({ success: true, appointmentId: result.insertId });
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    res.status(500).json({ error: error.message });
   }
 }

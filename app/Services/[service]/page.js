@@ -31,12 +31,12 @@ const ServicePage = () => {
     <>
       <Header />
       <Navbar />
-      <div className="flex flex-col items-center justify-center text-white pt-10">
+      <div className="flex flex-col items-center justify-center text-white dark:text-black pt-10">
         <Image src={imagePath} alt={service} width={200} height={200} />
         <Title title={service} />
         <button
           onClick={handleAccessClick}
-          className="mt-10 border px-16 border-white py-2 text-white font-medium rounded-3xl duration-150 col-span-2"
+          className="mt-10 border px-16 border-white dark:border-black py-2 text-white dark:text-black font-medium rounded-3xl duration-150 col-span-2"
         >
           Access
         </button>

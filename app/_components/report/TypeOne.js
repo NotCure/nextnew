@@ -67,7 +67,6 @@ const TypeOne = () => {
       });
       const responseData = await response.json();
       if (response.ok) {
-        console.log("Response:", responseData.message); // Success message
         alert(responseData.message); // Show a success message to the user
       } else {
         throw new Error(responseData.error);
@@ -82,11 +81,11 @@ const TypeOne = () => {
     <section className="bg-transparent flex justify-center items-center">
       <div className="max-w-screen-xl px-4 sm:px-6 lg:px-8 w-full flex justify-center">
         <div className="w-full max-w-3xl">
-          <div className="rounded-lg bg-transparent p-8 shadow-lg lg:p-12">
+          <div className="rounded-lg bg-transparent p-8 lg:p-12">
             <form action="#" onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input
-                  className="w-full rounded-lg border-gray-200 p-3 px-12 text-sm md:p-4 md:px-28"
+                  className="w-full rounded-lg  dark:border-black p-3 mr-12 text-sm md:p-4 md:mr-40 bg-white  shadow-lg"
                   placeholder="Name"
                   type="text"
                   id="name"
@@ -96,7 +95,7 @@ const TypeOne = () => {
               </div>
               <div>
                 <input
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                  className="w-full rounded-lg  dark:border-black p-3 text-sm md:p-4 bg-white shadow-lg"
                   placeholder="Email address"
                   type="email"
                   id="email"
@@ -116,7 +115,7 @@ const TypeOne = () => {
                 />
                 <label
                   htmlFor="Option1"
-                  className={`block cursor-pointer rounded-lg p-3 text-white mb-4 flex justify-center items-center ${
+                  className={`block cursor-pointer rounded-lg p-3 text-white dark:text-black mb-4 flex justify-center items-center ${
                     useCurrentAddress ? "border-2 " : "border "
                   }`}
                 >
@@ -125,8 +124,10 @@ const TypeOne = () => {
                   </span>
                 </label>
                 <input
-                  className={`w-full rounded-lg border-gray-200 p-3 text-sm md:p-4 ${
-                    useCurrentAddress ? "text-white" : "text-gray-900"
+                  className={`w-full rounded-lg   dark:border-black p-3 text-sm md:p-4 bg-white  shadow-lg ${
+                    useCurrentAddress
+                      ? "text-white dark:text-black"
+                      : "text-gray-900"
                   }`}
                   placeholder="Address"
                   type="text"
@@ -138,7 +139,7 @@ const TypeOne = () => {
               </div>
               <div>
                 <textarea
-                  className="w-full rounded-lg border-gray-200 p-3 text-sm md:p-4"
+                  className="w-full rounded-lg  border-black p-3 text-sm md:p-4 bg-white  shadow-lg"
                   placeholder="Message"
                   rows="8"
                   id="message"
@@ -149,7 +150,7 @@ const TypeOne = () => {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="inline-block w-full rounded-lg bg-transparent px-5 py-3 font-medium text-white sm:w-auto border border-white"
+                  className="inline-block w-full rounded-lg bg-transparent px-5 py-3 font-medium text-white dark:text-black sm:w-auto border dark:border-black border-white"
                 >
                   Send Report
                 </button>

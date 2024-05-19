@@ -44,7 +44,7 @@ export default function Login() {
       <Title title="Login" />
 
       <main className="w-full h-screen flex flex-col items-center mt-16 px-4">
-        <div className="max-w-sm w-full text-white">
+        <div className="max-w-sm w-full text-white dark:text-black">
           <h1
             className={`flex justify-center text-red-500 ${
               error ? "visible" : "invisible"
@@ -59,7 +59,7 @@ export default function Login() {
                 type="email"
                 name="email"
                 required
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-white focus:border-2 shadow-sm rounded-lg"
+                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-white dark:focus:border-black focus:border-2 shadow-sm rounded-lg"
                 value={credentials.email}
                 onChange={handleChange}
               />
@@ -70,14 +70,14 @@ export default function Login() {
                 type="password"
                 name="password"
                 required
-                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-white focus:border-2 shadow-sm rounded-lg"
+                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-white dark:focus:border-black focus:border-2 shadow-sm rounded-lg"
                 value={credentials.password}
                 onChange={handleChange}
               />
             </div>
             <button
               type="submit"
-              className="w-full px-4 py-2 text-white font-medium border border-white rounded-2xl duration-150"
+              className="w-full px-4 py-2 text-white dark:border-black dark:text-black font-medium border border-white rounded-2xl duration-150"
             >
               Sign in
             </button>

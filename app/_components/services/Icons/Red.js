@@ -1,8 +1,13 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const RedIcon = () => {
+  const router = useRouter();
+
   const services = [
     {
       id: "Crashes",
@@ -26,10 +31,14 @@ const RedIcon = () => {
     },
   ];
 
+  const handleAppointmentClick = () => {
+    router.push(`/Appointment/Make/red`);
+  };
+
   return (
     <div className="flex flex-col md:flex-row items-center w-full">
       <div className="w-full md:w-1/2 p-4">
-        <h1 className="text-4xl text-center text-white font-semibold mb-6">
+        <h1 className="text-4xl text-center text-white dark:text-black font-semibold mb-6">
           Traffic
         </h1>
         <div className="grid grid-cols-2 gap-6 mb-8">
@@ -39,7 +48,7 @@ const RedIcon = () => {
               href={`/Services/${service.id}`}
               legacyBehavior
             >
-              <a className="flex flex-col items-center text-white">
+              <a className="flex flex-col items-center dark:text-black text-white">
                 <Image
                   src={service.image}
                   alt={service.name}
@@ -51,10 +60,18 @@ const RedIcon = () => {
             </Link>
           ))}
         </div>
+        <div className="flex justify-center">
+          <button
+            onClick={handleAppointmentClick}
+            className="mt-2 text-gray-300 text-sm text-center"
+          >
+            Make an appointment
+          </button>
+        </div>
       </div>
       <div className="hidden md:flex w-full md:w-1/2 p-4 justify-center items-center">
         <Image
-          src="/assests/services/Services.png" // Specific image for Red
+          src="/assests/services/Services.png"
           alt="Large Red Scene"
           width={500}
           height={600}

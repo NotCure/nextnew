@@ -8,8 +8,7 @@ import Title from "@/app/_components/title/Title";
 import Navbar from "@/app/_components/navbar/navbar";
 import Header from "@/app/_components/header/Header";
 import TypeOne from "@/app/_components/report/TypeOne";
-import TypeTwo from "@/app/_components/report/TypeTwo";
-import TypeThree from "@/app/_components/report/TypeThree";
+
 const ServiceDetail = () => {
   const pathname = usePathname();
   const service = pathname.split("/").pop();
