@@ -14,7 +14,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       setUser(JSON.parse(userJson));
     }
 
-    // Handle body class for no-scroll
     const body = document.body;
     if (isOpen) {
       body.classList.add("no-scroll");
@@ -22,7 +21,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       body.classList.remove("no-scroll");
     }
 
-    // Clean up function
     return () => {
       body.classList.remove("no-scroll");
     };

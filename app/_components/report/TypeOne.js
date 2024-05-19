@@ -23,7 +23,7 @@ const TypeOne = () => {
         }
       );
     } else {
-      setAddress(""); // Clear the address when unchecked
+      setAddress("");
       setLatitude("");
       setLongitude("");
     }
@@ -51,25 +51,26 @@ const TypeOne = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/submitReport", {
+      const response = await fetch("../../api/submitReport", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          Datetime: new Date().toISOString(), // Sending current datetime in ISO format
-          Location: address,
-          Email: email,
-          Description: message,
-          Latitude: latitude,
-          Longitude: longitude,
+          message,
+          appointmentDateTime: new Date().toISOString(),
+          userId: 1,
         }),
       });
       const responseData = await response.json();
       if (response.ok) {
-        alert(responseData.message); // Show a success message to the user
+        alert(
+          responseData.success
+            ? "Report submitted successfully!"
+            : "Failed to submit report"
+        );
       } else {
-        throw new Error(responseData.error);
+        throw new Error(responseData.error || "An unknown error occurred");
       }
     } catch (error) {
       console.error("Submission error:", error.message);
@@ -85,7 +86,7 @@ const TypeOne = () => {
             <form action="#" onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <input
-                  className="w-full rounded-lg dark:text-black dark:border-black p-3 mr-12 text-sm md:p-4 md:mr-40 bg-white  shadow-lg"
+                  className="w-full rounded-lg dark:text-black dark:border-black p-3 mr-12 text-sm md:p-4 md:mr-40 bg-white shadow-lg"
                   placeholder="Name"
                   type="text"
                   id="name"
@@ -124,7 +125,7 @@ const TypeOne = () => {
                   </span>
                 </label>
                 <input
-                  className={`w-full rounded-lg   dark:border-black p-3 text-sm md:p-4 bg-white  shadow-lg ${
+                  className={`w-full rounded-lg dark:border-black p-3 text-sm md:p-4 bg-white shadow-lg ${
                     useCurrentAddress ? " dark:text-black" : "text-gray-900"
                   }`}
                   placeholder="Address"
@@ -137,7 +138,7 @@ const TypeOne = () => {
               </div>
               <div>
                 <textarea
-                  className="w-full rounded-lg dark:text-black border-black p-3 text-sm md:p-4 bg-white  shadow-lg"
+                  className="w-full rounded-lg dark:text-black border-black p-3 text-sm md:p-4 bg-white shadow-lg"
                   placeholder="Message"
                   rows="8"
                   id="message"

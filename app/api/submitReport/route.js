@@ -1,4 +1,5 @@
 import mysql from "mysql2/promise";
+import { NextResponse } from "next/server";
 
 async function query({ query, values = [] }) {
   const dbconnection = await mysql.createConnection({
@@ -23,23 +24,31 @@ async function getRandomAgentId() {
   return agentResults[0].AgentID;
 }
 
-export async function POST(req, res) {
-  if (req.method !== "POST") {
-    res.setHeader("Allow", ["POST"]);
-    return res.status(405).end(`Method ${req.method} Not Allowed`);
+export async function POST(req) {
+  const body = await req.json();
+  const { message, appointmentDateTime, userId } = body;
+
+  if (!message || !appointmentDateTime || !userId) {
+    return NextResponse.json(
+      { error: "Missing required fields" },
+      { status: 400 }
+    );
   }
 
   try {
-    const { message, appointmentDateTime, userId } = req.body;
     const agentId = await getRandomAgentId();
 
     const result = await query({
-      query: "INSERT INTO tblAfspraak (DateTime, Message, AgentID, BurgerID) VALUES (?, ?, ?, ?)",
+      query:
+        "INSERT INTO tblAfspraak (DateTime, Message, AgentID, BurgerID) VALUES (?, ?, ?, ?)",
       values: [appointmentDateTime, message, agentId, userId],
     });
 
-    res.status(201).json({ success: true, appointmentId: result.insertId });
+    return NextResponse.json(
+      { success: true, appointmentId: result.insertId },
+      { status: 201 }
+    );
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
