@@ -72,7 +72,7 @@ const BlueIcon = () => {
 
       <div className="hidden md:flex w-full md:w-1/2 p-4 justify-center items-center">
         <Image
-          src="/assests/services/Services.png"
+          src="/assests/services/Theft.png"
           alt="Large Scene"
           width={600}
           height={800}

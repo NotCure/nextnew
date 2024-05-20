@@ -8,29 +8,29 @@ import { Icon } from "leaflet";
 const originalWidth = 214;
 const originalHeight = 413;
 const newWidth = 28;
-const newHeight = (originalHeight / originalWidth) * newWidth; // Keeping aspect ratio
+const newHeight = (originalHeight / originalWidth) * newWidth;
 
 const originalShadowWidth = 263;
 const originalShadowHeight = 257;
 const newShadowWidth = newWidth;
 const newShadowHeight =
-  (originalShadowHeight / originalShadowWidth) * newShadowWidth; // Keeping aspect ratio
+  (originalShadowHeight / originalShadowWidth) * newShadowWidth;
 
 const customIcon = new Icon({
-  iconUrl: "/assests/Marker.png", // Ensure this path is correct
-  shadowUrl: "/assests/MarkerShadow.png", // Ensure this path is correct
-  iconSize: [newWidth, newHeight], // Adjusted size keeping aspect ratio
-  iconAnchor: [newWidth / 2, newHeight], // Adjust the anchor point as needed
-  popupAnchor: [0, -newHeight], // Adjust the popup anchor point as needed
-  shadowSize: [newShadowWidth, newShadowHeight], // Adjusted size keeping aspect ratio
-  shadowAnchor: [newShadowWidth / 4, newShadowHeight], // Adjust the shadow anchor point as needed
+  iconUrl: "/assests/Marker.png",
+  shadowUrl: "/assests/MarkerShadow.png",
+  iconSize: [newWidth, newHeight],
+  iconAnchor: [newWidth / 2, newHeight],
+  popupAnchor: [0, -newHeight],
+  shadowSize: [newShadowWidth, newShadowHeight],
+  shadowAnchor: [newShadowWidth / 4, newShadowHeight],
 });
 
 const MapCenter = ({ lat, lng }) => {
   const map = useMap();
   useEffect(() => {
     if (lat && lng) {
-      map.setView([lat, lng], 15); // Zoom level set to 15 for a closer look
+      map.setView([lat, lng], 15);
     }
   }, [lat, lng, map]);
   return null;
@@ -45,7 +45,7 @@ const ReportMap = ({ selectedLocation }) => {
 
   const fetchReports = async () => {
     try {
-      const response = await fetch("../../api/getReports"); // Corrected the API endpoint
+      const response = await fetch("../../api/getReports");
       const data = await response.json();
       setReports(data);
     } catch (error) {

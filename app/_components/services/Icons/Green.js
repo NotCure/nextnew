@@ -64,7 +64,7 @@ const GreenIcon = () => {
         <div className="flex justify-center">
           <button
             onClick={handleAppointmentClick}
-            className="mt-2 text-gray-400 text-sm text-center"
+            className="mt-2 text-gray-400 text-sm text-center mb-10"
           >
             Make an appointment
           </button>
@@ -73,7 +73,7 @@ const GreenIcon = () => {
 
       <div className="hidden md:flex w-full md:w-1/2 p-4 justify-center items-center">
         <Image
-          src="/assests/services/Services.png"
+          src="/assests/services/Requests.png"
           alt="Large Scene"
           width={600}
           height={800}

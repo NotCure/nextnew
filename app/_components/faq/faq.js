@@ -84,10 +84,6 @@ export default () => {
       q: "What is the fastest way to contact the administration?",
       a: "The fastest way to contact the administration is by navigating to the 'Contact Us' tab. Ensure all fields are correctly filled out.",
     },
-    {
-      q: "Question?",
-      a: "hey",
-    },
   ];
 
   return (

@@ -11,17 +11,17 @@ const HeroAfter = () => {
     {
       number: "01",
       title: "Traffic",
-      imageSrc: "/assests/services/Services.png",
+      imageSrc: "/assests/services/carCrash.png",
     },
     {
       number: "02",
       title: "Theft",
-      imageSrc: "/assests/services/Services.png",
+      imageSrc: "/assests/services/Theft.png",
     },
     {
       number: "03",
       title: "Requests",
-      imageSrc: "/assests/services/Services.png",
+      imageSrc: "/assests/services/Requests.png",
     },
   ];
   const { theme } = useTheme();
