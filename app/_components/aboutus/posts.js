@@ -45,9 +45,9 @@ const Posts = () => {
             <Image
               src="/assests/aboutus/2.png" // Ensure the path is correct
               alt="Services"
-              width={500} // Adjust width as needed
-              height={300} // Adjust height as needed
-              objectFit="cover" // Adjust object-fit as needed
+              width={500}
+              height={300}
+              style={{ objectFit: "cover" }}
             />
           </div>
 

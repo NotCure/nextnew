@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 
 const ActionButtons = () => {
   const [user, setUser] = useState(null);
-  const [mounted, setMounted] = useState(false); // New state to check if component is mounted
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
@@ -18,7 +18,7 @@ const ActionButtons = () => {
     if (userJson) {
       setUser(JSON.parse(userJson));
     }
-    setMounted(true); // Set mounted to true after component is mounted
+    setMounted(true);
   }, []);
 
   const logout = () => {
@@ -64,7 +64,7 @@ const ActionButtons = () => {
         onClick={toggleTheme}
         className={`${buttonClassBase} ${buttonClass}`}
       >
-        {theme === "light" ? "Light" : "Dark"}
+        {theme === "light" ? "Dark" : "Light"}
       </button>
     </div>
   );

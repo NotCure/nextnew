@@ -33,13 +33,7 @@ const NavigationLinks = () => {
 
   return (
     <div className="flex items-center space-x-20">
-      <Image
-        src={hamburgerSrc}
-        alt="Hamburger Menu"
-        width={40}
-        height={40}
-        layout="fixed"
-      />
+      <Image src={hamburgerSrc} alt="Hamburger Menu" width={40} height={40} />
       {isLoggedIn && isAdmin && (
         <>
           <Link

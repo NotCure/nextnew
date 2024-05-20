@@ -10,7 +10,7 @@ const AdditionalLogo = () => {
         className="opacity-0"
         width={34}
         height={34}
-        layout="fixed"
+        
       />
     </div>
   );

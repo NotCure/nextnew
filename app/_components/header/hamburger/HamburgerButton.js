@@ -21,7 +21,6 @@ const HamburgerButton = ({ isOpen, toggleSidebar }) => {
         alt="Hamburger Menu"
         width={45}
         height={45}
-        layout="fixed"
       />
     </button>
   );

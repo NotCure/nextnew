@@ -2,7 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { ThemeProvider, useTheme } from "next-themes";
+import { ThemeProvider } from "next-themes";
 
 import Loader from "./_components/Loader/Loader";
 
@@ -23,10 +23,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins_font.variable} poppin bg-black dark:bg-white transition-all	`}
+        className={`${poppins_font.variable} poppin bg-black dark:bg-white transition-all`}
       >
         <ThemeProvider attribute="class">
-          {" "}
           <Loader />
           {children}
         </ThemeProvider>

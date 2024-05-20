@@ -31,7 +31,6 @@ const MainLogo = ({ className }) => {
           alt="Logo"
           width={125}
           height={125}
-          layout="fixed"
           className="md:w-40"
         />
       </Link>
