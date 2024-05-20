@@ -7,10 +7,10 @@ import { useTheme } from "next-themes";
 
 const ActionButtons = () => {
   const [user, setUser] = useState(null);
+  const [mounted, setMounted] = useState(false); // New state to check if component is mounted
   const router = useRouter();
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
-
   const isHomePage = pathname === "/";
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const ActionButtons = () => {
     if (userJson) {
       setUser(JSON.parse(userJson));
     }
+    setMounted(true); // Set mounted to true after component is mounted
   }, []);
 
   const logout = () => {
@@ -35,11 +36,15 @@ const ActionButtons = () => {
     "select-none rounded-lg border py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase transition-all hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none";
 
   const buttonClassHomePage =
-    "text-white border-white dark:text-black dark:border-black       md:dark:text-white md:dark:border-white md:text-white md:border-white";
+    "text-white border-white dark:text-black dark:border-black md:dark:text-white md:dark:border-white md:text-white md:border-white";
   const buttonClassOtherPage =
     "text-white dark:text-black border-white dark:border-black";
 
   const buttonClass = isHomePage ? buttonClassHomePage : buttonClassOtherPage;
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <div className="flex items-center space-x-4">

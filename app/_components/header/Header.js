@@ -6,7 +6,7 @@ import HamburgerMenu from "./hamburger/HamburgerMenu";
 
 const Header = () => {
   return (
-    <header className=" py-4 w-full flex items-center justify-between md:justify-start md:pl-4">
+    <header className="transition-all py-4 w-full flex items-center justify-between md:justify-start md:pl-4">
       {/* Mobile components */}
       <div className="md:hidden flex justify-between w-full px-3 items-center">
         <HamburgerMenu />

@@ -15,7 +15,7 @@ export default function Home() {
   const { theme } = useTheme();
 
   return (
-    <div className="overflow-x-hidden overflow-y-hidden transition-all">
+    <div className=" overflow-x-hidden overflow-y-hidden transition-all">
       <div
         className={
           theme === "dark" ? styles.background_white : styles.background

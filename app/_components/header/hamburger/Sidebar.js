@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
-import Link from "next/link"; // Import the Link component from next/link
+import Link from "next/link";
 import ActionButtons from "../../navbar/ActionButtons";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -28,11 +27,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   const isLoggedIn = !!user;
   const isAdmin = user && user.isAdmin;
+
   return (
     <div
-      className={`fixed top-0 left-0 bottom-0 h-full z-40 transform ${
+      className={`fixed top-0 left-0 bottom-0 z-40 transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } transition-transform duration-300 ease-in-out bg-black dark:bg-white shadow-lg w-full`}
+      } transition-transform duration-300 ease-in-out bg-black dark:bg-white shadow-lg w-full md:w-80`}
     >
       <div className="pt-28 pl-10 text-white dark:text-black">
         <h1 className="text-2xl font-bold">MAINMENU</h1>
@@ -54,14 +54,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <h1>News</h1>
         </Link>
         <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 " />
-        <Link href="/sitemap">
-          <h1>Sitemap</h1>
-        </Link>
-        <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 " />
-        <Link href="/contact">
-          <h1>Contact Support</h1>
-        </Link>
-        <hr className="my-3 h-0.5 rounded-3xl border-t-0 bg-zinc-800 " />
+
         <Link href="/FAQ">
           <h1>FAQ</h1>
         </Link>
@@ -94,8 +87,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </Link>
           </>
         )}
-
-        {!isLoggedIn && <></>}
       </div>
 
       <div className="flex justify-center pt-10">

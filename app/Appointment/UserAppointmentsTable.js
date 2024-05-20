@@ -34,7 +34,7 @@ const UserAppointmentsTable = () => {
   };
 
   return (
-    <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+    <div className="max-w-screen-xl mx-auto px-4 md:px-8 p-10">
       <div className="max-w-lg">
         <h3 className="text-white dark:text-black text-xl font-bold sm:text-2xl">
           My Appointments
