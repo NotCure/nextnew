@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import TrafficCard from "./ServicesCards.js";
 import Link from "next/link";
@@ -25,7 +25,13 @@ const HeroAfter = () => {
     },
   ];
   const { theme } = useTheme();
+  const videoRef = useRef(null);
 
+  const handleVideoClick = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  };
   return (
     <>
       <div className="h-80 z-40 absolute -translate-y-24">
@@ -56,14 +62,18 @@ const HeroAfter = () => {
             </button>
           </Link>
         </div>
-        <div className="max-w-lg mx-auto mt-24">
-          <Image
-            src="/assests/services/Services.png"
-            alt="image description"
+        <div className="max-w-2xl mx-auto mt-24">
+          <video
+            ref={videoRef}
             width={700}
             height={467}
-            className="rounded-lg"
-          />
+            className="rounded-lg cursor-pointer"
+            onClick={handleVideoClick}
+            controls
+          >
+            <source src="/Reclame.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         {cardData.map((card, index) => (
           <TrafficCard key={index} {...card} />

@@ -26,9 +26,9 @@ async function getRandomAgentId() {
 
 export async function POST(req) {
   const body = await req.json();
-  const { message, appointmentDateTime, userId } = body;
+  const { message, name, email, address, latitude, longitude } = body;
 
-  if (!message || !appointmentDateTime || !userId) {
+  if (!message || !name || !email) {
     return NextResponse.json(
       { error: "Missing required fields" },
       { status: 400 }
@@ -37,15 +37,28 @@ export async function POST(req) {
 
   try {
     const agentId = await getRandomAgentId();
+    const dateTime = new Date().toISOString();
+    const status = "1"; // Assuming '1' is the default status
 
     const result = await query({
-      query:
-        "INSERT INTO tblAfspraak (DateTime, Message, AgentID, BurgerID) VALUES (?, ?, ?, ?)",
-      values: [appointmentDateTime, message, agentId, userId],
+      query: `
+        INSERT INTO tblReport 
+        (Datetime, Location, Email, Description, Latitude, Longitude, Status, AgentID) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      values: [
+        dateTime,
+        address,
+        email,
+        message,
+        latitude,
+        longitude,
+        status,
+        agentId,
+      ],
     });
 
     return NextResponse.json(
-      { success: true, appointmentId: result.insertId },
+      { success: true, reportId: result.insertId },
       { status: 201 }
     );
   } catch (error) {

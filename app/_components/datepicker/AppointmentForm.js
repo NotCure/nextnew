@@ -7,6 +7,7 @@ const AppointmentForm = ({ onSubmit }) => {
   const [appointmentDate, setAppointmentDate] = useState(null);
   const [appointmentTime, setAppointmentTime] = useState(null);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const handleDateChange = (date) => {
     if (date && date < new Date()) {
@@ -33,6 +34,9 @@ const AppointmentForm = ({ onSubmit }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setError("");
+    setSuccessMessage("");
+
     if (!appointmentDate || appointmentDate < new Date()) {
       setError("The appointment date must be in the future.");
       return;
@@ -66,8 +70,7 @@ const AppointmentForm = ({ onSubmit }) => {
       });
 
       if (response.ok) {
-        const result = await response.json();
-        alert("Appointment created successfully!");
+        setSuccessMessage("Appointment created successfully!");
       } else {
         const errorData = await response.json();
         setError(errorData.error);
@@ -92,7 +95,7 @@ const AppointmentForm = ({ onSubmit }) => {
                     customInput={
                       <input
                         type="text"
-                        className="w-full shadow-lg rounded-lg bg-white border-gray-200 p-3 text-sm md:p-4 md:pr-48 "
+                        className="w-full shadow-lg rounded-lg dark:text-black bg-white border-gray-200 p-3 text-sm md:p-4 md:pr-48 "
                       />
                     }
                     className="w-full"
@@ -112,7 +115,7 @@ const AppointmentForm = ({ onSubmit }) => {
                     customInput={
                       <input
                         type="text"
-                        className="w-full shadow-lg rounded-lg bg-white border-gray-200 p-3 text-sm md:p-4 md:pr-48 bg-white"
+                        className="w-full shadow-lg rounded-lg dark:text-black border-gray-200 p-3 text-sm md:p-4 md:pr-48 bg-white"
                       />
                     }
                     className="w-full"
@@ -120,11 +123,9 @@ const AppointmentForm = ({ onSubmit }) => {
                 </div>
               </div>
 
-              {error && <div className="text-red-500 text-sm">{error}</div>}
-
               <div>
                 <textarea
-                  className="w-full shadow-lg rounded-lg bg-white border-gray-200 p-3 text-sm md:p-4"
+                  className="w-full shadow-lg rounded-lg dark:text-black bg-white border-gray-200 p-3 text-sm md:p-4"
                   placeholder="Message"
                   rows="8"
                   id="message"
@@ -132,6 +133,11 @@ const AppointmentForm = ({ onSubmit }) => {
                   onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
+              {error && <div className="text-red-500 text-sm">{error}</div>}
+              {successMessage && (
+                <div className="text-blue-500 text-sm">{successMessage}</div>
+              )}
+
               <div className="mt-4">
                 <button
                   type="submit"

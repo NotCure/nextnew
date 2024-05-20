@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 
 const ActionButtons = () => {
   const [user, setUser] = useState(null);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false); // New state to check if component is mounted
   const router = useRouter();
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();

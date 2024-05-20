@@ -13,7 +13,7 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="email"
-              className="block text-white dark:text-black text-sm font-medium mb-2"
+              className="block text-black dark:text-black text-sm font-medium mb-2"
             >
               Email Address
             </label>
@@ -21,7 +21,7 @@ const ContactForm = () => {
               id="email"
               type="email"
               name="email"
-              className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 bg-white"
+              className="w-full p-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 bg-white text-black"
             />
             <ValidationError
               prefix="Email"
@@ -34,14 +34,14 @@ const ContactForm = () => {
           <div>
             <label
               htmlFor="message"
-              className="block text-white dark:text-black text-sm font-medium mb-2"
+              className="block text-black dark:text-black text-sm font-medium mb-2"
             >
               Message
             </label>
             <textarea
               id="message"
               name="message"
-              className="w-full p-2 border border-gray-300 rounded-md bg-white"
+              className="w-full p-2 border border-gray-300 rounded-md bg-white text-black"
               rows="4"
             ></textarea>
             <ValidationError
@@ -61,7 +61,7 @@ const ContactForm = () => {
           </button>
           <div>
             <h1 className="text-white dark:text-black">
-              Thanks for contacting us! The Message is successfully sent!
+              Thanks for contacting us! The message is successfully sent!
             </h1>
           </div>
         </form>
@@ -83,7 +83,7 @@ const ContactForm = () => {
             id="email"
             type="email"
             name="email"
-            className="w-full p-2 border border-gray-300 rounded-md bg-white shadow-lg"
+            className="w-full p-2 border border-gray-300 rounded-md bg-white shadow-lg text-black"
           />
           <ValidationError
             prefix="Email"
@@ -96,14 +96,14 @@ const ContactForm = () => {
         <div>
           <label
             htmlFor="message"
-            className="block text-white dark:text-black text-sm font-medium mb-2 "
+            className="block text-white dark:text-black text-sm font-medium mb-2"
           >
             Message
           </label>
           <textarea
             id="message"
             name="message"
-            className="w-full p-2 border border-gray-300 rounded-md bg-white shadow-lg"
+            className="w-full p-2 border border-gray-300 rounded-md bg-white shadow-lg text-black"
             rows="4"
           ></textarea>
           <ValidationError
@@ -117,7 +117,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={state.submitting}
-          className="w-full p-2 text-white dark:text-black rounded-md border dark:border-black border-white  "
+          className="w-full p-2 text-white dark:text-black rounded-md border dark:border-black border-white"
         >
           Submit
         </button>

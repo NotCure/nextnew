@@ -8,7 +8,7 @@ const TypeOne = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [statusMessage, setStatusMessage] = useState(""); // State for status message
+  const [statusMessage, setStatusMessage] = useState("");
 
   const handleCheckboxChange = () => {
     setUseCurrentAddress((prev) => !prev);
@@ -52,26 +52,29 @@ const TypeOne = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("../../api/submitReport", {
+      const response = await fetch("/api/submitReport", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           message,
-          appointmentDateTime: new Date().toISOString(),
-          userId: 1,
+          name,
+          email,
+          address,
+          latitude,
+          longitude,
         }),
       });
       const responseData = await response.json();
       if (response.ok) {
-        setStatusMessage("Report submitted successfully!"); // Set success message
+        setStatusMessage("Report submitted successfully!");
       } else {
         throw new Error(responseData.error || "An unknown error occurred");
       }
     } catch (error) {
       console.error("Submission error:", error.message);
-      setStatusMessage(`Failed to submit report: ${error.message}`); // Set error message
+      setStatusMessage(`Failed to submit report: ${error.message}`);
     }
   };
 

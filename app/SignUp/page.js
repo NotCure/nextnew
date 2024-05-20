@@ -56,7 +56,7 @@ export default function SignUp() {
       <Navbar />
       <Title title="Sign Up" />
 
-      <main className="flex justify-center pt-14">
+      <main className="flex justify-center pt-14 transition-all">
         <div className="flex justify-center h-screen">
           <div className="max-w-2xl space-y-8 px-4 dark:text-black text-white sm:px-6">
             <h3 className="text-2xl font-bold sm:text-3xl">Sign up</h3>
